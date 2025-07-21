@@ -1,16 +1,18 @@
-name: Reusable Terraform Workflow for task definition
+# .github/workflows/trigger.yml
+name: Reusable Terraform Workflow for Task Definition
 
 on:
   workflow_call:
     inputs:
       nco-version:
-      required: true
-      type: string
-    env:
-      nco-version: ${{ github.head_ref || github.ref_name}}
+        required: true
+        type: string
 
 jobs:
-  - name: Detect Changes in Image Folders
-    run: |
-      echo "Checking for image changes..."
-      echo "nco-version: ${{ env.nco-version }}"
+  detect-image-changes:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check NCO Version
+        run: |
+          echo "Checking for image changes..."
+          echo "nco-version: ${{ inputs.nco-version }}"
