@@ -9,6 +9,6 @@ on:
 
 jobs:
   deploy:
-    uses: ./github/workflows/trigger.yml
+    uses: ./.github/workflows/trigger.yml
     with:
       nco-version: ${{ github.head_ref || github.ref_name}}
