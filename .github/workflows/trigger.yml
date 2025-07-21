@@ -1,0 +1,16 @@
+name: Reusable Terraform Workflow for task definition
+
+on:
+  workflow_call:
+    inputs:
+      nco-version:
+      required: true
+      type: string
+    env:
+      nco-version: ${{ github.head_ref || github.ref_name}}
+
+jobs:
+  - name: Detect Changes in Image Folders
+    run: |
+      echo "Checking for image changes..."
+      echo "nco-version: ${{ env.nco-version }}"
