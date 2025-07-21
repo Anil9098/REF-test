@@ -1,1 +1,14 @@
+name: Image Change Detector
 
+on:
+  push:
+    branches: ['main']
+    paths: ["images/**"]
+  pull_request:
+    paths: ["images/**"]
+
+jobs:
+  deploy:
+    uses: ./github/workflows/trigger.yml
+    with:
+      nco-version: ${{ github.head_ref || github.ref_name}}
